@@ -1,3 +1,5 @@
+@import "tailwindcss";
+
 /* Basic reset + global styles */
 html, body, #__next {
   margin: 0;
