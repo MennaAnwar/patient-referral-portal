@@ -14,6 +14,9 @@ import {
   MapPinIcon
 } from "@heroicons/react/24/outline";
 
+import Head from "next/head";
+
+
 const referralSchema = z.object({
   firstName: z.string().min(1, "First name is required"),
   lastName: z.string().min(1, "Last name is required"),
@@ -75,158 +78,153 @@ export default function ReferralPage() {
     );
 
   return (
-    <div className="min-h-screen bg-blue-50 py-12">
-      <div className="max-w-2xl mx-auto bg-white shadow-lg rounded-xl p-8">
+    <>
+      <Head>
+        <title>Patient Referral Portal</title>
+      </Head>
+      <div className="min-h-screen bg-blue-50 py-12">
+        <div className="max-w-2xl mx-auto bg-white shadow-lg rounded-xl p-8">
 
-        <h1 className="text-2xl font-bold text-gray-800 mb-6 text-center">
-          Patient Referral Form
-        </h1>
+          <h1 className="text-2xl font-bold text-gray-800 mb-6 text-center">
+            Patient Referral Form
+          </h1>
 
-        <form className="space-y-5" onSubmit={handleSubmit(onSubmit)}>
+          <form className="space-y-5" onSubmit={handleSubmit(onSubmit)}>
 
-          {/* Patient Name */}
-          <div className="grid grid-cols-2 gap-4">
-            <div className="relative">
-              <UserIcon className="w-5 h-5 absolute left-3 top-3 text-gray-400"/>
-              <input
-                {...register("firstName")}
-                placeholder="First Name"
-                className="border rounded-lg pl-10 p-2 w-full focus:ring focus:ring-blue-200"
-              />
+            {/* Patient Name */}
+            <div className="grid grid-cols-2 gap-4">
+              <div className="relative">
+                <UserIcon className="w-5 h-5 absolute left-3 top-3 text-gray-400" />
+                <input
+                  {...register("firstName")}
+                  placeholder="First Name"
+                  className="border rounded-lg pl-10 p-2 w-full focus:ring focus:ring-blue-200" />
+              </div>
+
+              <div className="relative">
+                <UserIcon className="w-5 h-5 absolute left-3 top-3 text-gray-400" />
+                <input
+                  {...register("lastName")}
+                  placeholder="Last Name"
+                  className="border rounded-lg pl-10 p-2 w-full focus:ring focus:ring-blue-200" />
+              </div>
             </div>
 
+            {/* DOB */}
             <div className="relative">
-              <UserIcon className="w-5 h-5 absolute left-3 top-3 text-gray-400"/>
+              <CalendarIcon className="w-5 h-5 absolute left-3 top-3 text-gray-400" />
               <input
-                {...register("lastName")}
-                placeholder="Last Name"
-                className="border rounded-lg pl-10 p-2 w-full focus:ring focus:ring-blue-200"
-              />
+                {...register("dob")}
+                type="date"
+                className="border rounded-lg pl-10 p-2 w-full focus:ring focus:ring-blue-200" />
             </div>
-          </div>
 
-          {/* DOB */}
-          <div className="relative">
-            <CalendarIcon className="w-5 h-5 absolute left-3 top-3 text-gray-400"/>
-            <input
-              {...register("dob")}
-              type="date"
-              className="border rounded-lg pl-10 p-2 w-full focus:ring focus:ring-blue-200"
-            />
-          </div>
+            {/* Phone */}
+            <div className="relative">
+              <PhoneIcon className="w-5 h-5 absolute left-3 top-3 text-gray-400" />
+              <input
+                {...register("patientPhone")}
+                placeholder="Patient Phone"
+                className="border rounded-lg pl-10 p-2 w-full focus:ring focus:ring-blue-200" />
+            </div>
 
-          {/* Phone */}
-          <div className="relative">
-            <PhoneIcon className="w-5 h-5 absolute left-3 top-3 text-gray-400"/>
-            <input
-              {...register("patientPhone")}
-              placeholder="Patient Phone"
-              className="border rounded-lg pl-10 p-2 w-full focus:ring focus:ring-blue-200"
-            />
-          </div>
+            {/* Email */}
+            <div className="relative">
+              <EnvelopeIcon className="w-5 h-5 absolute left-3 top-3 text-gray-400" />
+              <input
+                {...register("patientEmail")}
+                placeholder="Patient Email (optional)"
+                className="border rounded-lg pl-10 p-2 w-full focus:ring focus:ring-blue-200" />
+            </div>
 
-          {/* Email */}
-          <div className="relative">
-            <EnvelopeIcon className="w-5 h-5 absolute left-3 top-3 text-gray-400"/>
-            <input
-              {...register("patientEmail")}
-              placeholder="Patient Email (optional)"
-              className="border rounded-lg pl-10 p-2 w-full focus:ring focus:ring-blue-200"
-            />
-          </div>
+            {/* Law Firm */}
+            <div className="relative">
+              <BuildingOfficeIcon className="w-5 h-5 absolute left-3 top-3 text-gray-400" />
+              <input
+                {...register("lawFirm")}
+                placeholder="Law Firm"
+                className="border rounded-lg pl-10 p-2 w-full focus:ring focus:ring-blue-200" />
+            </div>
 
-          {/* Law Firm */}
-          <div className="relative">
-            <BuildingOfficeIcon className="w-5 h-5 absolute left-3 top-3 text-gray-400"/>
-            <input
-              {...register("lawFirm")}
-              placeholder="Law Firm"
-              className="border rounded-lg pl-10 p-2 w-full focus:ring focus:ring-blue-200"
-            />
-          </div>
+            {/* Attorney Name */}
+            <div className="relative">
+              <UserIcon className="w-5 h-5 absolute left-3 top-3 text-gray-400" />
+              <input
+                {...register("attorneyName")}
+                placeholder="Attorney / Case Manager Name"
+                className="border rounded-lg pl-10 p-2 w-full focus:ring focus:ring-blue-200" />
+            </div>
 
-          {/* Attorney Name */}
-          <div className="relative">
-            <UserIcon className="w-5 h-5 absolute left-3 top-3 text-gray-400"/>
-            <input
-              {...register("attorneyName")}
-              placeholder="Attorney / Case Manager Name"
-              className="border rounded-lg pl-10 p-2 w-full focus:ring focus:ring-blue-200"
-            />
-          </div>
+            {/* Attorney Email */}
+            <div className="relative">
+              <EnvelopeIcon className="w-5 h-5 absolute left-3 top-3 text-gray-400" />
+              <input
+                {...register("attorneyEmail")}
+                placeholder="Attorney Email"
+                className="border rounded-lg pl-10 p-2 w-full focus:ring focus:ring-blue-200" />
+            </div>
 
-          {/* Attorney Email */}
-          <div className="relative">
-            <EnvelopeIcon className="w-5 h-5 absolute left-3 top-3 text-gray-400"/>
-            <input
-              {...register("attorneyEmail")}
-              placeholder="Attorney Email"
-              className="border rounded-lg pl-10 p-2 w-full focus:ring focus:ring-blue-200"
-            />
-          </div>
+            {/* Attorney Phone */}
+            <div className="relative">
+              <PhoneIcon className="w-5 h-5 absolute left-3 top-3 text-gray-400" />
+              <input
+                {...register("attorneyPhone")}
+                placeholder="Attorney Phone"
+                className="border rounded-lg pl-10 p-2 w-full focus:ring focus:ring-blue-200" />
+            </div>
 
-          {/* Attorney Phone */}
-          <div className="relative">
-            <PhoneIcon className="w-5 h-5 absolute left-3 top-3 text-gray-400"/>
-            <input
-              {...register("attorneyPhone")}
-              placeholder="Attorney Phone"
-              className="border rounded-lg pl-10 p-2 w-full focus:ring focus:ring-blue-200"
-            />
-          </div>
+            {/* Complaint */}
+            <div className="relative">
+              <ChatBubbleLeftRightIcon className="w-5 h-5 absolute left-3 top-3 text-gray-400" />
+              <textarea
+                {...register("complaint")}
+                placeholder="Primary Complaint"
+                maxLength={500}
+                className="border rounded-lg pl-10 p-2 w-full focus:ring focus:ring-blue-200" />
+            </div>
 
-          {/* Complaint */}
-          <div className="relative">
-            <ChatBubbleLeftRightIcon className="w-5 h-5 absolute left-3 top-3 text-gray-400"/>
-            <textarea
-              {...register("complaint")}
-              placeholder="Primary Complaint"
-              maxLength={500}
-              className="border rounded-lg pl-10 p-2 w-full focus:ring focus:ring-blue-200"
-            />
-          </div>
+            {/* Location */}
+            <div className="relative">
+              <MapPinIcon className="w-5 h-5 absolute left-3 top-3 text-gray-400" />
+              <select
+                {...register("clinicLocation")}
+                className="border rounded-lg pl-10 p-2 w-full focus:ring focus:ring-blue-200"
+              >
+                {["Anaheim", "Culver City", "Downey", "El Monte", "Long Beach", "Los Angeles"].map(loc => (
+                  <option key={loc} value={loc}>{loc}</option>
+                ))}
+              </select>
+            </div>
 
-          {/* Location */}
-          <div className="relative">
-            <MapPinIcon className="w-5 h-5 absolute left-3 top-3 text-gray-400"/>
-            <select
-              {...register("clinicLocation")}
-              className="border rounded-lg pl-10 p-2 w-full focus:ring focus:ring-blue-200"
-            >
-              {["Anaheim","Culver City","Downey","El Monte","Long Beach","Los Angeles"].map(loc => (
-                <option key={loc} value={loc}>{loc}</option>
+            {/* Appointment Type */}
+            <div className="flex gap-6">
+              {["In-Person", "Telemedicine"].map(type => (
+                <label key={type} className="flex items-center gap-2">
+                  <input type="radio" value={type} {...register("appointmentType")} />
+                  {type}
+                </label>
               ))}
-            </select>
-          </div>
-
-          {/* Appointment Type */}
-          <div className="flex gap-6">
-            {["In-Person", "Telemedicine"].map(type => (
-              <label key={type} className="flex items-center gap-2">
-                <input type="radio" value={type} {...register("appointmentType")} />
-                {type}
-              </label>
-            ))}
-          </div>
-
-          {/* Errors */}
-          {serverError && (
-            <div className="bg-red-100 text-red-700 p-3 rounded">
-              {serverError}
             </div>
-          )}
 
-          {/* Submit */}
-          <button
-            type="submit"
-            disabled={mutation.isPending}
-            className="w-full bg-blue-600 hover:bg-blue-700 transition text-white p-3 rounded-lg font-semibold"
-          >
-            {mutation.isPending ? "Submitting..." : "Submit Referral"}
-          </button>
+            {/* Errors */}
+            {serverError && (
+              <div className="bg-red-100 text-red-700 p-3 rounded">
+                {serverError}
+              </div>
+            )}
 
-        </form>
+            {/* Submit */}
+            <button
+              type="submit"
+              disabled={mutation.isPending}
+              className="w-full bg-blue-600 hover:bg-blue-700 transition text-white p-3 rounded-lg font-semibold"
+            >
+              {mutation.isPending ? "Submitting..." : "Submit Referral"}
+            </button>
+
+          </form>
+        </div>
       </div>
-    </div>
+      </>
   );
 }
