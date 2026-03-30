@@ -31,13 +31,7 @@ A full-stack web application for law firms and attorneys to submit patient refer
    DATABASE_URL=\"postgresql://username:password@localhost:5432/referralsdb\"
    ```
 
-4. Run database migrations:
-   ```
-   npx drizzle-kit generate
-   npx drizzle-kit push
-   ```
-
-5. Start development server:
+4. Start development server:
    ```
    npm run dev
    ```
